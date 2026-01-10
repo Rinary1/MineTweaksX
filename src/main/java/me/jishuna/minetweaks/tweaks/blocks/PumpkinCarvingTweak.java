@@ -4,13 +4,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
+import java.util.UUID;
+import java.net.URL;
+import java.net.MalformedURLException;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
+import org.bukkit.block.BlockState;
+import org.bukkit.block.Skull;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Rotatable;
 import org.bukkit.configuration.ConfigurationSection;
@@ -25,10 +30,10 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.profile.PlayerProfile;
 
 import me.jishuna.commonlib.items.ItemBuilder;
 import me.jishuna.commonlib.items.ItemUtils;
-import me.jishuna.commonlib.utils.BlockUtils;
 import me.jishuna.commonlib.utils.FileUtils;
 import me.jishuna.minetweaks.MineTweaks;
 import me.jishuna.minetweaks.api.RegisterTweak;
@@ -54,10 +59,12 @@ public class PumpkinCarvingTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Blocks/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/blocks.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true, false);
+			SetName("Pumpkin Carving");
+			SetDescription("Shift clicking a pumpkin with shears will allow you to carve special player head pumpkin designs.");
 
-			ConfigurationSection section = config.getConfigurationSection("textures");
+			ConfigurationSection section = config.getConfigurationSection(this.getName() + ".textures");
 
 			if (section == null)
 				return;
@@ -71,7 +78,7 @@ public class PumpkinCarvingTweak extends Tweak {
 			this.textures = this.textureMap.values().toArray(new String[0]);
 
 			int size = (int) (9 * (Math.ceil(textureMap.size() / 9d)));
-			this.inventory = Bukkit.createInventory(null, size, config.getString("gui-name", "Pumpkin Carving"));
+			this.inventory = Bukkit.createInventory(null, size, config.getString(this.getName() + ".gui-name", "Pumpkin Carving"));
 
 			for (Entry<String, String> entry : this.textureMap.entrySet()) {
 				ItemStack item = new ItemBuilder(Material.PLAYER_HEAD).skullTexture(entry.getValue())
@@ -122,7 +129,7 @@ public class PumpkinCarvingTweak extends Tweak {
 			data.setRotation(player.getFacing());
 			target.setBlockData(data);
 
-			BlockUtils.setSkullTextureUrl(target, texture);
+			setSkullTexture(target, texture);
 
 			player.playSound(player.getLocation(), Sound.BLOCK_PUMPKIN_CARVE, SoundCategory.BLOCKS, 1f, 1f);
 
@@ -130,8 +137,25 @@ public class PumpkinCarvingTweak extends Tweak {
 				ItemUtils.reduceDurability(player, carvingData.item, carvingData.hand);
 
 			this.carvingMap.remove(event.getView());
-			Bukkit.getScheduler().runTask(getPlugin(), player::closeInventory);
+			player.closeInventory();
 		}
+	}
+
+	private void setSkullTexture(Block block, String texture) {
+		BlockState state = block.getState();
+		if (!(state instanceof Skull skull))
+			return;
+
+		PlayerProfile profile = Bukkit.createPlayerProfile(UUID.randomUUID());
+		try {
+			URL url = new URL("http://textures.minecraft.net/texture/" + texture);
+			profile.getTextures().setSkin(url);
+		} catch (MalformedURLException ex) {
+			return;
+		}
+
+		skull.setOwnerProfile(profile);
+		skull.update(false, false);
 	}
 
 	private void onClose(InventoryCloseEvent event) {

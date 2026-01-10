@@ -26,8 +26,10 @@ public class FireSpongeDryingTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Blocks/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/blocks.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true, false);
+			SetName("Flint And Steel Sponge Drying");
+			SetDescription("Allows players to dry sponges by clicking them with a flint and steel.");
 		});
 	}
 

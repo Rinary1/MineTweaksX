@@ -55,7 +55,11 @@ public class RecipeManager {
 		ShapedRecipe newRecipe = new ShapedRecipe(
 				new NamespacedKey(plugin, result.getType().toString().toLowerCase() + "_extra"), result);
 		newRecipe.shape(original.getShape());
-		original.getChoiceMap().forEach(newRecipe::setIngredient);
+		original.getChoiceMap().forEach((c, choice) -> {
+			if (choice != null) {
+				newRecipe.setIngredient(c, choice);
+			}
+		});
 		newRecipe.setGroup(original.getGroup());
 
 		return newRecipe;

@@ -26,8 +26,10 @@ public class UnlockRecipesTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Recipes/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/recipes.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true);
+			SetName("Unlock All Recipes");
+			SetDescription("Unlocks all recipes for a player when they join.");
 		});
 
 	}

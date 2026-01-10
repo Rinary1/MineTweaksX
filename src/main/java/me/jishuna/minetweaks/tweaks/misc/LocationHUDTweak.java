@@ -29,10 +29,12 @@ public class LocationHUDTweak extends Tweak implements TickingTweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Misc/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/misc.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true);
+			SetName("Location HUD");
+			SetDescription("Allows players to see their location in the action bar.");
 
-			this.format = ChatColor.translateAlternateColorCodes('&', config.getString("display-format"));
+			this.format = ChatColor.translateAlternateColorCodes('&', config.getString(this.getName() + ".display-format"));
 		});
 	}
 

@@ -32,12 +32,14 @@ public class SmallFlowerBonemealTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Farming/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/farming.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true, false);
+			SetName("Small Flower Bonemealing");
+			SetDescription("Allows players to bonemeal small flowers to duplicate them. Suggested By: XionioXMaster");
 
 			this.flowers = new HashSet<>();
 
-			for (String key : config.getStringList("flowers")) {
+			for (String key : config.getStringList(this.getName() + ".flowers")) {
 				Material material = Material.matchMaterial(key.toUpperCase());
 
 				if (material != null) {
@@ -63,7 +65,7 @@ public class SmallFlowerBonemealTweak extends Tweak {
 		World world = block.getWorld();
 		Location location = block.getLocation().add(0.5, 0.5, 0.5);
 		world.dropItemNaturally(block.getLocation(), new ItemStack(block.getType()));
-		world.spawnParticle(Particle.VILLAGER_HAPPY, location, 15, 0.3d, 0.3d, 0.3d);
+		Particle.HAPPY_VILLAGER.builder().location(location).count(15).offset(0.3d, 0.3d, 0.3d).spawn();
 
 		if (mode != GameMode.CREATIVE) {
 			item.setAmount(item.getAmount() - 1);

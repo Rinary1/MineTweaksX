@@ -4,6 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.ShapelessRecipe;
 
 import me.jishuna.commonlib.utils.FileUtils;
 import me.jishuna.minetweaks.MineTweaks;
@@ -20,8 +21,10 @@ public class DispenserDropperRecipe extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Recipes/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/recipes.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true);
+			SetName("Dispensers from Droppers");
+			SetDescription("Allows crafting dispensers with a dropper, sticks, and string or just with dropper and bow.");
 			
 			if (!isEnabled())
 				return;
@@ -33,6 +36,10 @@ public class DispenserDropperRecipe extends Tweak {
 			recipe.setIngredient('2', Material.STRING);
 			recipe.setIngredient('3', Material.DROPPER);
 			RecipeManager.getInstance().addRecipe(getPlugin(), recipe);
+
+			ShapelessRecipe recipe2 = new ShapelessRecipe(new NamespacedKey(getPlugin(), "dropper_dispenser_bow"), new ItemStack(Material.DISPENSER));
+			recipe2.addIngredient(Material.BOW);
+			recipe2.addIngredient(Material.DROPPER);
 		});
 
 	}

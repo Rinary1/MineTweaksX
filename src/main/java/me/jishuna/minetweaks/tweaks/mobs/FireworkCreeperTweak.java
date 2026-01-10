@@ -19,6 +19,8 @@ import me.jishuna.minetweaks.api.tweak.Tweak;
 @RegisterTweak("firework_creepers")
 public class FireworkCreeperTweak extends Tweak {
 
+	private boolean damage;
+
 	public FireworkCreeperTweak(MineTweaks plugin, String name) {
 		super(plugin, name);
 
@@ -27,14 +29,19 @@ public class FireworkCreeperTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Mobs/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, false);
+		FileUtils.loadResource(getPlugin(), "Tweaks/mobs.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), false);
+			SetName("Firework Creepers");
+			SetDescription("Makes creepers explode into fireworks, disables block damage.");
+
+			this.damage = config.getBoolean(this.getName() + ".damage", false);
 		});
 	}
 
 	private void onEntityExplode(EntityExplodeEvent event) {
 		if (event.getEntityType() == EntityType.CREEPER) {
-			event.blockList().clear();
+			if (this.damage)
+				event.blockList().clear();
 
 			Firework firework = event.getEntity().getWorld().spawn(event.getLocation(), Firework.class);
 			Random random = ThreadLocalRandom.current();

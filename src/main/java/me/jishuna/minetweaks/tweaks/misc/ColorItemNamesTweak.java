@@ -20,8 +20,10 @@ public class ColorItemNamesTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Misc/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/misc.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true);
+			SetName("Colored Item Names");
+			SetDescription("Allows players to color item names in an anvil using the & color codes.");
 		});
 	}
 

@@ -15,6 +15,11 @@ import me.jishuna.minetweaks.api.tweak.Tweak;
 
 @RegisterTweak("inventory_crafting_table")
 public class InventoryCraftingTweak extends Tweak {
+
+	private boolean require_permission;
+
+	private String permission;
+
 	public InventoryCraftingTweak(MineTweaks plugin, String name) {
 		super(plugin, name);
 
@@ -23,13 +28,21 @@ public class InventoryCraftingTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Items/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/items.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true, false);
+			SetName("Use Crafting Table in Inventory");
+			SetDescription("Allows players to use crafting tables from their inventory by pressing F on them.");
+
+			this.require_permission = config.getBoolean(this.getName() + ".require_permission", false);
+			this.permission = config.getString(this.getName() + ".permission", "minetweaks.items.inventory_crafting");
 		});
 	}
 
 	private void onClick(InventoryClickEvent event) {
 		if (event.isCancelled())
+			return;
+
+		if (this.require_permission && !event.getWhoClicked().hasPermission(this.permission))
 			return;
 		
 		if (event.getInventory().getType() != InventoryType.CRAFTING || event.getClick() != ClickType.SWAP_OFFHAND)

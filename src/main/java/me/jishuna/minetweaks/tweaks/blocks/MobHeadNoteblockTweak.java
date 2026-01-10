@@ -1,5 +1,7 @@
 package me.jishuna.minetweaks.tweaks.blocks;
 
+import java.util.Set;
+
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
 import org.bukkit.block.Block;
@@ -8,7 +10,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.NotePlayEvent;
 
 import me.jishuna.commonlib.utils.FileUtils;
-import me.jishuna.commonlib.utils.Version;
 import me.jishuna.minetweaks.MineTweaks;
 import me.jishuna.minetweaks.api.RegisterTweak;
 import me.jishuna.minetweaks.api.tweak.Tweak;
@@ -21,18 +22,19 @@ public class MobHeadNoteblockTweak extends Tweak {
 	public MobHeadNoteblockTweak(MineTweaks plugin, String name) {
 		super(plugin, name);
 
-		addInvalidVersions(Version.V1_19_R2);
+		setMaxVersion(18);
 		addEventHandler(NotePlayEvent.class, EventPriority.HIGH, this::onNotePlay);
 	}
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Blocks/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/blocks.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true, false);
+			SetName("Mob Head Noteblocks");
+			SetDescription("Makes note blocks with mob heads attached to them play the mobs sound. Suggested by: YKDZ");
 		});
 	}
 
-	@SuppressWarnings("deprecation")
 	private void onNotePlay(NotePlayEvent event) {
 		if (event.isCancelled())
 			return;

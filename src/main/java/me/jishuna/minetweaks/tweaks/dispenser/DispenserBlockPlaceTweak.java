@@ -30,14 +30,17 @@ public class DispenserBlockPlaceTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Dispensers/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/dispensers.yml").ifPresent(config -> {
+			var configName = this.getName().split("_", 2)[1];
+			loadDefaults(config, configName, true, false);
+			SetName("Dispenser Block Placing");
+			SetDescription("Allows dispensers to place blocks in front of them.");
 
-			this.requireAir = config.getBoolean("placement-requires-air", true);
+			this.requireAir = config.getBoolean(configName + ".placement-requires-air", true);
 
 			placementMap = new EnumMap<>(Material.class);
 
-			ConfigurationSection section = config.getConfigurationSection("placement-mappings");
+			ConfigurationSection section = config.getConfigurationSection(configName + ".placement-mappings");
 			for (String key : section.getKeys(true)) {
 				Material fromMaterial = Material.matchMaterial(key.toUpperCase());
 				Material toMaterial = Material.matchMaterial(section.getString(key).toUpperCase());

@@ -21,8 +21,11 @@ public class ItemFrameWaterTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Item Frames/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/item_frames.yml").ifPresent(config -> {
+			var configName = this.getName().split("_", 2)[1];
+			loadDefaults(config, configName, true, false);
+			SetName("Water Removes Item Frame Invisibility");
+			SetDescription("Splash water bottles will return invisible item frames to visible.");
 		});
 	}
 

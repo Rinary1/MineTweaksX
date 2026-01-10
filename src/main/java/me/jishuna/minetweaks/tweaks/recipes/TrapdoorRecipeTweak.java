@@ -26,8 +26,10 @@ public class TrapdoorRecipeTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Recipes/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/recipes.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true);
+			SetName("More Trapdoors");
+			SetDescription("Increases the number of trapdoors crafted at once.");
 
 			if (!isEnabled())
 				return;
@@ -48,7 +50,7 @@ public class TrapdoorRecipeTweak extends Tweak {
 
 			this.recipes.forEach(recipe -> {
 				ItemStack result = recipe.getResult();
-				result.setAmount(config.getInt("more-trapdoors-amount", 12));
+				result.setAmount(config.getInt(this.getName() + ".amount", 12));
 
 				ShapedRecipe newRecipe = RecipeManager.copyRecipe(getPlugin(), recipe, result);
 				RecipeManager.getInstance().addRecipe(getPlugin(), newRecipe);

@@ -22,8 +22,10 @@ public class ArmorStandWaterTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Armor Stands/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/armorstand.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName().split("_", 2)[1], true, false);
+			SetName("Water Removes Armor Stand Invisibility");
+			SetDescription("Splash water bottles will return invisible armor stands to visible.");
 		});
 	}
 

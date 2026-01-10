@@ -1,0 +1,96 @@
+## Bedrock Wither Health Tweak Configuration
+
+bedrock_wither_health.enabled: false
+
+bedrock_wither_health.category: "Mobs"
+
+## Chicken Plucking Tweak Configuration
+
+chicken_plucking.enabled: true
+
+# Whether damage should be inflicted on the chicken. 
+chicken_plucking.damage: true
+
+# How much damage will be inflicted on the chicken.
+chicken_plucking.damage-amount: 1
+
+# The chance for a feather to drop, out of 100.
+chicken_plucking.drop-chance: 100
+
+chicken_plucking.category: "Mobs"
+
+## Disable Enderman Griefing Tweak Configuration
+
+# Enabled: enderman griefing will be disabled.
+enderman_griefing.enabled: true
+
+enderman_griefing.category: "Mobs"
+
+## Firework Creepers Tweak Configuration
+
+firework_creepers.enabled: false
+
+# Whether block damage should be used.
+firework_creepers.damage: false
+
+firework_creepers.category: "Mobs"
+
+## Show Horse Stats Tweak Configuration
+
+horse_stats.enabled: true
+
+# The text format to use, &health% %speed% and %jump% are replaced with their respective values, & color codes supported.
+horse_stats.display-format: '&6Health: &2%health% &8| &6Speed: &2%speed% &8| &6Jump: &2%jump%'
+
+# Require the horse to be tamed before stats are shown.
+horse_stats.require-tamed: true
+
+horse_stats.category: "Mobs"
+
+## No Mob Farmland Trampling Tweak Configuration
+
+no_trampling_farmland.enabled: true
+
+# Whether we also should ignore players, so they also can't trample farmland.
+no_trampling_farmland.ignore-players: false
+
+no_trampling_farmland.category: "Mobs"
+
+## Protect Pets Tweak Configuration
+## Explanation: Prevents you from damaging your own pets.
+
+pet_protection.enabled: true
+
+pet_protection.category: "Mobs"
+
+## Poisonous Potato Baby Mobs Tweak Configuration
+
+poison_potato_baby_mobs.enabled: true
+
+poison_potato_baby_mobs.category: "Mobs"
+
+## Snowman Head Restoration Tweak Configuration
+
+replace_snowman_head.enabled: true
+
+replace_snowman_head.category: "Mobs"
+
+## Shulker Dyeing Tweak Configuration
+
+shulker_dyeing.enabled: true
+
+shulker_dyeing.category: "Mobs"
+
+## Silence Mobs Tweak Configuration
+
+# Enable or disable this tweak.
+silence_mobs.enabled: true
+
+# Category
+silence_mobs.category: "Mobs"
+
+## Wither Spawns Wither Skeletons Tweak Configuration
+
+wither_spawns_skeletons.enabled: true
+
+wither_spawns_skeletons.category: "Mobs"

@@ -1,0 +1,89 @@
+## Cobwebs From String Tweak Configuration
+
+cobweb_from_string.enabled: true
+
+cobweb_from_string.category: "Recipes"
+
+## Dispensers from Droppers Tweak Configuration
+## Explanation: Allows crafting dispensers with a dropper, sticks, and string or just with dropper and bow.
+
+dispensers_from_droppers.enabled: true
+
+dispensers_from_droppers.category: "Recipes"
+
+## Hide Bundles Tweak Configuration
+## ALERT: not works after 1.21 because they implemented in vanilla game.
+hide_bundle.enabled: true
+
+hide_bundle.category: "Recipes"
+
+## Leather Bundles Tweak Configuration
+## ALERT: not works after 1.21 because they implemented in vanilla game.
+
+leather_bundle.enabled: false
+
+leather_bundle.category: "Recipes"
+
+## More Stairs Tweak Configuration
+
+more_stairs.enabled: true
+
+# How many stairs will be crafted at once.
+more_stairs.amount: 8
+
+more_stairs.category: "Recipes"
+
+## More Trapdoors Tweak Configuration
+
+more_trapdoors.enabled: true
+
+# How many trapdoors will be crafted at once.
+more_trapdoors.amount: 12
+
+more_trapdoors.category: "Recipes"
+
+## Red Sand from Dye Tweak Configuration
+
+red_sand_dye.enabled: false
+
+# How much red dye you need to craft red sand
+red_sand_dye.amount: 1
+
+red_sand_dye.category: "Recipes"
+
+## Red Sand from Iron Tweak Configuration
+
+red_sand_iron.enabled: true
+
+# How much nuggets you need to craft red sand
+red_sand_iron.amount: 1
+
+red_sand_iron.category: "Recipes"
+
+## Rotten Flesh to Leather Tweak Configuration
+
+rotten_flesh_leather.enabled: false
+
+# The cooking time (in ticks) for rotten flesh.
+rotten_flesh_leather.rotten-flesh-cook-time: 200
+
+rotten_flesh_leather.category: "Recipes"
+
+## String From Cobwebs Tweak Configuration
+
+string_from_cobweb.enabled: true
+
+string_from_cobweb.category: "Recipes"
+
+## Uncompress Quartz Tweak Configuration
+
+uncompress_quartz.enabled: true
+
+uncompress_quartz.category: "Recipes"
+
+## Unlock All Recipes Tweak Configuration
+## Explanation: Unlocks all recipes for a player when they join.
+
+unlock_on_join.enabled: true
+
+unlock_on_join.category: "Recipes"

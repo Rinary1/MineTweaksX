@@ -31,12 +31,15 @@ public class DispenserSmallFlowerBonemealTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Dispensers/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/dispensers.yml").ifPresent(config -> {
+			var configName = this.getName().split("_", 2)[1];
+			loadDefaults(config, configName, true, false);
+			SetName("Dispenser Small Flower Bonemealing");
+			SetDescription("Allows dispensers to bonemeal small flowers to duplicate them. Suggested By: XionioXMaster");
 
 			this.flowers = new HashSet<>();
 
-			for (String key : config.getStringList("flowers")) {
+			for (String key : config.getStringList(configName + ".flowers")) {
 				Material material = Material.matchMaterial(key.toUpperCase());
 
 				if (material != null) {

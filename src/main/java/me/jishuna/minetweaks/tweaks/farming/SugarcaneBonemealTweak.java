@@ -26,10 +26,12 @@ public class SugarcaneBonemealTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Farming/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/farming.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true, false);
+			SetName("Sugar Cane Bonemealing");
+			SetDescription("Allows players to bonemeal sugar cane.");
 
-			this.height = config.getInt("sugarcane-bonemeal-height", 3);
+			this.height = config.getInt(this.getName() + ".height", 3);
 		});
 	}
 

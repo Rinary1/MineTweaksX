@@ -38,16 +38,18 @@ public class TrowelTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Items/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/items.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true, false);
+			SetName("Trowel");
+			SetDescription("A tool that will place a random block from the players hotbar. Suggested by: YKDZ");
 
 			if (!isEnabled())
 				return;
 
 			ItemStack trowel = new ItemBuilder(
-					ItemUtils.getMaterial(config.getString("trowel-material", ""), Material.IRON_SHOVEL))
-					.name(ChatColor.RESET + config.getString("trowel-name", "Trowel"))
-					.modelData(config.getInt("trowel-model-data", 1))
+					ItemUtils.getMaterial(config.getString(this.getName() + ".material", ""), Material.IRON_SHOVEL))
+					.name(ChatColor.RESET + config.getString(this.getName() + ".name", "Trowel"))
+					.modelData(config.getInt(this.getName() + ".model-data", 1))
 					.persistentData(PluginKeys.ITEM_TYPE.getKey(), PersistentDataType.STRING, "trowel").build();
 
 			ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey(getPlugin(), "trowel_recipe"), trowel);

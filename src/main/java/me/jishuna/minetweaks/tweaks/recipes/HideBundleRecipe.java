@@ -16,12 +16,15 @@ public class HideBundleRecipe extends Tweak {
 
 	public HideBundleRecipe(MineTweaks plugin, String name) {
 		super(plugin, name);
+		setMaxVersion(20);
 	}
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Recipes/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/recipes.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true);
+			SetName("Hide Bundles");
+			SetDescription("Allows crafting bundles with rabbit hide and string.");
 			
 			if (!isEnabled())
 				return;

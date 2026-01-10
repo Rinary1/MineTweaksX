@@ -27,8 +27,10 @@ public class PoisonPotatoBabyMobs extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Mobs/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/mobs.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true);
+			SetName("Poisonous Potato Baby Mobs");
+			SetDescription("Allows players to prevent baby animals from growing up by feeding them a poisonous potato.");
 		});
 	}
 

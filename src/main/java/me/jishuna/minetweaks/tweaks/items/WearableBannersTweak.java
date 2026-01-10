@@ -21,8 +21,10 @@ public class WearableBannersTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Items/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/items.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true, false);
+			SetName("Wearable Banners");
+			SetDescription("Allows players to wear banners on their head. Suggested by: LordZimbo");
 		});
 	}
 

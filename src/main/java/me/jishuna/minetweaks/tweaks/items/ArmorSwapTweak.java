@@ -30,8 +30,10 @@ public class ArmorSwapTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Items/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/items.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true, false);
+			SetName("Armor Swap");
+			SetDescription("Allows players to swap held armor with currently equipped armor. Suggested by: TomyGamy");
 		});
 	}
 

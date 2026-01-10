@@ -27,11 +27,13 @@ public class SandBoneamealTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Farming/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/farming.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true, false);
+			SetName("Sand Bonemealing");
+			SetDescription("Allows players to bonemeal sand for dead bushes.");
 
-			this.sand = config.getBoolean("allow-normal-sand", true);
-			this.redSand = config.getBoolean("allow-red-sand", true);
+			this.sand = config.getBoolean(this.getName() + ".allow-normal-sand", true);
+			this.redSand = config.getBoolean(this.getName() + ".allow-red-sand", true);
 		});
 	}
 

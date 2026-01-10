@@ -1,0 +1,50 @@
+## Blood Effect Tweak Configuration
+
+blood_effect.enabled: true
+
+# The number of particles to spawn.
+blood_effect.particle-count: 10
+
+# The block type to use for the blood effect.
+blood_effect.particle-material: 'RED_CONCRETE'
+
+blood_effect.category: "Misc"
+
+## Colored Item Names Tweak Configuration
+
+color_item_names.enabled: true
+
+color_item_names.category: "Misc"
+
+## Dyeable Name Tags Tweak Configuration
+
+dyable_names.enabled: true
+
+dyable_names.category: "Misc"
+
+## Location HUD Tweak Configuration
+
+location_hud.enabled: true
+
+# The text format to use, &health% %speed% and %jump% are replaced with their respective values, & color codes supported.
+location_hud.display-format: '&6X: &f%x% &6Y: &f%y% &6Z: &f%z%  %dir%'
+
+location_hud.category: "Misc"
+
+## Remove Screen Fire Tweak Configuration
+
+# ALERT: Doesn't work on 1.20+, because fire overlay was broken on server-side.
+
+remove_screen_fire.enabled: true
+
+remove_screen_fire.category: "Misc"
+
+## Swing Through Grass Tweak Configuration
+
+swing_through_grass.enabled: true
+
+# A list of materials that players should not be able to swing through, even if passable.
+swing_through_grass.blacklist:
+  - COBWEB
+
+swing_through_grass.category: "Misc"

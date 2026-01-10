@@ -33,11 +33,13 @@ public class HorseStatsTweak extends Tweak implements TickingTweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Mobs/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/mobs.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true);
+			SetName("Show Horse Stats");
+			SetDescription("Allows players to see the speed and jump strength of a ridden horse.");
 
-			this.format = ChatColor.translateAlternateColorCodes('&', config.getString("display-format"));
-			this.requireTamed = config.getBoolean("require-tamed", true);
+			this.format = ChatColor.translateAlternateColorCodes('&', config.getString(this.getName() + ".display-format"));
+			this.requireTamed = config.getBoolean(this.getName() + ".require-tamed", true);
 		});
 	}
 

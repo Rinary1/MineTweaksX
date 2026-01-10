@@ -27,8 +27,10 @@ public class StickyPistonConversionTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Blocks/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/blocks.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true, false);
+			SetName("Slimeball Piston Conversion");
+			SetDescription("Allows players to convert pistons into sticky pistons by right clicking with a slimeball.");
 		});
 	}
 

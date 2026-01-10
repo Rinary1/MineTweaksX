@@ -24,8 +24,10 @@ public class SnowmanHeadTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Mobs/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/mobs.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true);
+			SetName("Snowman Head Restoration");
+			SetDescription("Allows players to restore a snow man's pumpkin by right clicking with a pumpkin.");
 		});
 	}
 

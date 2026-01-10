@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Material;
 import org.bukkit.entity.WanderingTrader;
 import org.bukkit.event.EventPriority;
@@ -32,15 +32,17 @@ public class TraderTradesTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Wandering Trader/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/wandering_trader.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true, false);
+			SetName("Replace Trades");
+			SetDescription("Replaces the default wandering trader traders with custom trades.");
 
-			this.min = config.getInt("min-trades", 5);
-			this.max = config.getInt("max-trades", 7);
+			this.min = config.getInt(this.getName() + "min-trades", 5);
+			this.max = config.getInt(this.getName() + "max-trades", 7);
 
 			this.recipes.clear();
 
-			for (String entry : config.getStringList("custom-trades")) {
+			for (String entry : config.getStringList(this.getName() + "custom-trades")) {
 				String[] data = entry.split(",");
 
 				if (data.length < 4)

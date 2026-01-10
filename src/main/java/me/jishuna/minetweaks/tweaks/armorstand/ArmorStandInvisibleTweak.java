@@ -24,8 +24,10 @@ public class ArmorStandInvisibleTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Armor Stands/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/armorstand.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName().split("_", 2)[1], true, false);
+			SetName("Armor Stand Invisibility");
+			SetDescription("Splash invisibility potions will make armor stands invisible.");
 		});
 	}
 

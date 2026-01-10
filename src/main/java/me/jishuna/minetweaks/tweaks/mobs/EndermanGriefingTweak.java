@@ -20,8 +20,11 @@ public class EndermanGriefingTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Mobs/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/mobs.yml").ifPresent(config -> {
+			var configName = this.getName().split("_", 2)[1];
+			loadDefaults(config, configName, true);
+			SetName("Disable Enderman Griefing");
+			SetDescription("Stops endermen from picking up blocks.");
 		});
 	}
 

@@ -24,8 +24,10 @@ public class DyableNamesTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Misc/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/misc.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true);
+			SetName("Dyeable Name Tags");
+			SetDescription("Allows players to dye the name of named mobs using any type of dye.");
 		});
 	}
 

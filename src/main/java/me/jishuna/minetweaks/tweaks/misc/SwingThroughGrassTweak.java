@@ -32,12 +32,14 @@ public class SwingThroughGrassTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Misc/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/misc.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true);
+			SetName("Swing Through Grass");
+			SetDescription("Allows players to attack entities through tall grass and other passable blocks. Suggested by: YKDZ");
 
 			this.blacklist = new HashSet<>();
 
-			for (String key : config.getStringList("blacklist")) {
+			for (String key : config.getStringList(this.getName() + ".blacklist")) {
 				Material material = Material.matchMaterial(key.toUpperCase());
 
 				if (material != null) {

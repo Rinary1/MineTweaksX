@@ -32,12 +32,14 @@ public class BloodEffectTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Misc/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/misc.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true);
+			SetName("Blood Effect");
+			SetDescription("Allows players to see a blood effect when attacking enemies. Suggested by: LordZimbo");
 
-			this.count = config.getInt("particle-count", 10);
+			this.count = config.getInt(this.getName() + ".particle-count", 10);
 
-			Material material = Material.getMaterial(config.getString("particle-material").toUpperCase());
+			Material material = Material.getMaterial(config.getString(this.getName() + ".particle-material").toUpperCase());
 			this.data = material == null ? Material.RED_CONCRETE.createBlockData() : material.createBlockData();
 		});
 	}
@@ -53,7 +55,6 @@ public class BloodEffectTweak extends Tweak {
 		double halfHeight = living.getHeight() / 2;
 		double width = living.getWidth() / 4;
 
-		player.spawnParticle(Particle.BLOCK_DUST, living.getLocation().add(0, halfHeight, 0), this.count, width,
-				halfHeight / 2, width, 0, this.data);
+		Particle.FALLING_DUST.builder().location(living.getLocation().add(0, halfHeight, 0)).count(this.count).offset(width, halfHeight / 2, width).data(this.data).spawn();
 	}
 }

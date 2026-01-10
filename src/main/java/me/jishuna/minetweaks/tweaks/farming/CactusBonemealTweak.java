@@ -26,10 +26,12 @@ public class CactusBonemealTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Farming/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/farming.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true, false);
+			SetName("Cactus Bonemealing");
+			SetDescription("Allows players to bonemeal cactus.");
 
-			this.height = config.getInt("cactus-bonemeal-height", 3);
+			this.height = config.getInt(this.getName() + ".height", 3);
 		});
 	}
 

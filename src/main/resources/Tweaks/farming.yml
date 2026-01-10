@@ -1,0 +1,76 @@
+## Cactus Bonemealing Tweak Configuration
+
+cactus_bonemealing.enabled: true
+
+# The maximum height of sugar cane when bonemealed.
+cactus_bonemealing.height: 3
+
+cactus_bonemealing.category: "Farming"
+
+## Nether Wart Bonemealing Tweak Configuration
+
+netherwart_bonemealing.enabled: true
+
+netherwart_bonemealing.category: "Farming"
+
+## Right Click Harvesting Tweak Configuration
+
+right_click_harvesting.enabled: true
+
+# A map of blocks to seeds for right click harvesting
+right_click_harvesting.harvest-seed-mappings:
+  wheat: 'wheat_seeds'
+  carrots: 'carrot'
+  potatoes: 'potato'
+  beetroots: 'beetroot_seeds'
+  nether_wart: 'nether_wart'
+
+right_click_harvesting.category: "Farming"
+
+## Sand Bonemealing Tweak Configuration
+
+sand_bonemealing.enabled: true
+
+# Whether to allow this feature to work on normal sand.
+sand_bonemealing.allow-normal-sand: true
+# Whether to allow this feature to work on red sand.
+sand_bonemealing.allow-red-sand: true
+
+sand_bonemealing.category: "Farming"
+
+## Small Flower Bonemealing Tweak Configuration
+
+small_flower_bonemealing.enabled: true
+
+# A list of small flowers that can be duplicated.
+small_flower_bonemealing.flowers:
+  - DANDELION
+  - POPPY
+  - BLUE_ORCHID
+  - ALLIUM
+  - AZURE_BLUET
+  - RED_TULIP
+  - ORANGE_TULIP
+  - WHITE_TULIP
+  - PINK_TULIP
+  - OXEYE_DAISY
+  - CORNFLOWER
+  - LILY_OF_THE_VALLEY
+  - WITHER_ROSE
+
+small_flower_bonemealing.category: "Farming"
+
+## Sugar Cane Bonemealing Tweak Configuration
+
+sugarcane_bonemealing.enabled: true
+
+# The maximum height of sugar cane when bonemealed.
+sugarcane_bonemealing.height: 3
+
+# Display name, seen in-game
+display-name: "Sugar Cane Bonemealing"
+
+# Description, seen in-game
+description: "Allows players to bonemeal sugar cane."
+
+sugarcane_bonemealing.category: "Farming"

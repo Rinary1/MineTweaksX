@@ -26,8 +26,10 @@ public class SweetBerryPlantingTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Items/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/items.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true, false);
+			SetName("Sweet Berry Planting");
+			SetDescription("Stops players from planting sweet berries when trying to eat them, players must sneak to plant them.");
 		});
 	}
 

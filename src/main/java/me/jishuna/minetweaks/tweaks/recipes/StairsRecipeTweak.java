@@ -25,8 +25,10 @@ public class StairsRecipeTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Recipes/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/recipes.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true);
+			SetName("More Stairs");
+			SetDescription("Increases the number of stairs crafted at once.");
 
 			if (!isEnabled())
 				return;
@@ -47,7 +49,7 @@ public class StairsRecipeTweak extends Tweak {
 
 			this.recipes.forEach(recipe -> {
 				ItemStack result = recipe.getResult();
-				result.setAmount(config.getInt("more-stairs-amount", 8));
+				result.setAmount(config.getInt(this.getName() + ".amount", 8));
 
 				ShapedRecipe newRecipe = RecipeManager.copyRecipe(getPlugin(), recipe, result);
 				RecipeManager.getInstance().addRecipe(getPlugin(), newRecipe);

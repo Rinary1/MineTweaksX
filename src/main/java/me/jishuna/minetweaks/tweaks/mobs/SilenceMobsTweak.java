@@ -25,8 +25,10 @@ public class SilenceMobsTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Mobs/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/mobs.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true);
+			SetName("Silence Mobs");
+			SetDescription("Allows players to silence mobs by right-clicking them with a block of wool.");
 		});
 	}
 

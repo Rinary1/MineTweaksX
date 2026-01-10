@@ -20,8 +20,10 @@ public class UncompressQuartzRecipe extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Recipes/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/recipes.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true);
+			SetName("Uncompress Quartz");
+			SetDescription("Allows converting quartz blocks back to quartz.");
 			
 			if (!isEnabled())
 				return;

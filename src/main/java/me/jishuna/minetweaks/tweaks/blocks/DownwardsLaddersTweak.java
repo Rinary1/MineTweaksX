@@ -30,10 +30,12 @@ public class DownwardsLaddersTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Blocks/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/blocks.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true, false);
+			SetName("Downwards Ladder Building");
+			SetDescription("Allows building ladders downwards by clicking on a higher ladder while holding a ladder. Suggested by: YKDZ");
 
-			this.maxDistance = config.getInt("ladder-place-distance", 64);
+			this.maxDistance = config.getInt(this.getName() + ".ladder-place-distance", 64);
 		});
 	}
 

@@ -36,12 +36,14 @@ public class RightClickHarvestTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Farming/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/farming.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true, false);
+			SetName("Right Click Harvesting");
+			SetDescription("Allows players to harvest fully grown crops by right clicking.");
 
 			seedMap = new EnumMap<>(Material.class);
 
-			ConfigurationSection section = config.getConfigurationSection("harvest-seed-mappings");
+			ConfigurationSection section = config.getConfigurationSection(this.getName() + ".harvest-seed-mappings");
 			for (String key : section.getKeys(true)) {
 				Material fromMaterial = Material.matchMaterial(key.toUpperCase());
 				Material toMaterial = Material.matchMaterial(section.getString(key).toUpperCase());

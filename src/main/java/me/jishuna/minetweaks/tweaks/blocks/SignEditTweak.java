@@ -20,13 +20,16 @@ public class SignEditTweak extends Tweak {
 	public SignEditTweak(MineTweaks plugin, String name) {
 		super(plugin, name);
 
+		setMaxVersion(19);
 		addEventHandler(PlayerInteractEvent.class, EventPriority.HIGH, this::onInteract);
 	}
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Blocks/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/blocks.yml" + this.getName() + ".yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true, false);
+			SetName("Sign Editing");
+			SetDescription("Allows players to edit signs by sneak-right-clicking them.");
 		});
 	}
 

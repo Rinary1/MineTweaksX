@@ -20,8 +20,10 @@ public class RedSandIronRecipe extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Recipes/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/recipes.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true);
+			SetName("Red Sand from Iron");
+			SetDescription("Allows crafting red sand with sand and iron nuggets.");
 			
 			if (!isEnabled())
 				return;
@@ -31,7 +33,7 @@ public class RedSandIronRecipe extends Tweak {
 			recipe.setGroup("redden_sand");
 			recipe.shape("111", "101", "111");
 			recipe.setIngredient('1', Material.SAND);
-			recipe.setIngredient('0', Material.IRON_NUGGET);
+			recipe.setIngredient('0', new ItemStack(Material.IRON_NUGGET, config.getInt(this.getName() + ".amount", 1)));
 			RecipeManager.getInstance().addRecipe(getPlugin(), recipe);
 		});
 

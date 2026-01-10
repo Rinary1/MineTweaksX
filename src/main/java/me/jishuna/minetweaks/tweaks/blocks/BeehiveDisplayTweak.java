@@ -31,11 +31,13 @@ public class BeehiveDisplayTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Blocks/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/blocks.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true, false);
+			SetName("Beehive Display");
+			SetDescription("Shows players the amount of honey and bees in a hive when right clicking with an empty hand.");
 
 			this.message = ChatColor.translateAlternateColorCodes('&',
-					config.getString("display-message", "Placeholder"));
+					config.getString(this.getName() + ".display-message", "Placeholder"));
 		});
 	}
 

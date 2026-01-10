@@ -1,0 +1,90 @@
+## Anvil Cobblestone Compressing Tweak Configuration
+
+anvil_cobble_to_sand.enabled: true
+
+anvil_cobble_to_sand.category: "Blocks"
+
+## Beehive Display Tweak Configuration
+
+beehive_display.enabled: true
+
+# The message to display, %honey% will be replaced with the honey level and %bees% will be replaced with the number of bees in the nest.
+beehive_display.display-message: '&6Honey: &e%honey%&f   -   &6Bees: &e%bees%'
+
+beehive_display.category: "Blocks"
+
+## Downwards Ladder Building Tweak Configuration
+
+downwards_ladders.enabled: true
+
+# The maximum distance between the clicked ladder and the ladder that will be placed
+downwards_ladders.ladder-place-distance: 64
+
+downwards_ladders.category: "Blocks"
+
+## Fast Leaf Decay Tweak Configuration
+
+fast_leaf_decay.enabled: true
+
+# Decay type, either RANDOM, TOP_DOWN, or BOTTOM_UP.
+fast_leaf_decay.decay-type: RANDOM
+
+# The maximum distance from the starting block to check for leaves to decay.
+fast_leaf_decay.max-distance: 12
+
+fast_leaf_decay.category: "Blocks"
+
+## Flint And Steel Sponge Drying Tweak Configuration
+
+fire_dry_sponge.enabled: true
+
+fire_dry_sponge.category: "Blocks"
+
+## Mob head noteblock Tweak Configuration
+
+# ALERT: AFTER Minecraft 1.19 this tweak already implemented in vanilla Minecraft. So it will be disabled automatically.
+
+mob_head_noteblocks.enabled: true
+
+mob_head_noteblocks.category: "Blocks"
+
+## Pumpkin Carving Tweak Configuration
+
+pumpkin_carving.enabled: true
+
+# The name of the GUI
+pumpkin_carving.gui-name: "Pumpkin Carving"
+
+# The names and texture values to use for carving, you can add more from https://minecraft-heads.com by inputting the Minecraft-URL value
+pumpkin_carving.textures:
+  happy: 493fd8fc36775713d8f72883bcf0ae5bbf87ddda7f4b4e3bd2ae4985fa3e6
+  very-happy: 12ea96f540f171d6f6844669b1753cf48a8f415e8bc37c8ee8bf561ca6e31f28
+  sad: c9d375e2ddd6d8c807ba882dca4be545a0f3ab873033071a0e8d4725258fe0db
+  surprised: f5496aa5d08c316443bdcdd1ead2ffd36f56784b39168b6c84a8b31364f377
+  crazy: 466fc35884fdb4cb4aa4c692788cfb4865a3f0148e76291a3dfb37563c638b
+  dead: 13cd8e3aa1786465ed7c3d5ccba9b189965cb6e3bfe42605e97336854d3fae
+  slime: da23a17527924f54e8f796ac956b0dedd11467271044acfc93f6e591b0d463
+  pufferfish: 34e347063a05b95d6af3c8f0114bd19096e3a8c7eb4c4374bd34d7604483d22a
+  zombie: 408eb5732b016d5b58b9ee9d1f2bd324b483ad10a5b9e881378446bdbc2d27a5
+  creeper: 6df057a558754bb23a18e1c5e2c41c22841ca56677641d33e9aa5e8ffa21e7
+  cool: 249253db8883a0784fe5ef88bdcd1a11e3c7feb0599a19bcd58268e0804c6912
+  scared: 63d631f3a253953b80400e422adb2bcf16508ca2c048f0aacf6bc385fae87f2e
+  ghost: 82a0f870f08c6f785c42e90254a75c1a5b52d26dc9a3dd69b32b7ec9c7d381
+  annoyed: d1b540717bddedea58bcadb63d1951a3112e4eb5cbea5128ab56ce3b9245bb6f
+  neutral: 77775ce7ef5b9bff15edd3116dd3cbaaf9782843bca955760a987ccea7ec3ef
+
+pumpkin_carving.category: "Blocks"
+
+## Sign Editing Tweak Configuration
+
+# ALERT: AFTER Minecraft 1.19 this tweak already implemented in vanilla Minecraft. So it will be disabled automatically.
+
+sign_editing.enabled: true
+
+sign_editing.category: "Blocks"
+
+## Slimeball Piston Conversion Tweak Configuration
+
+slimeball_sticky_pistons.enabled: true
+
+slimeball_sticky_pistons.category: "Blocks"

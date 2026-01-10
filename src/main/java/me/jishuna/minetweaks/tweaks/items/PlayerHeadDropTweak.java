@@ -29,11 +29,13 @@ public class PlayerHeadDropTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Items/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/items.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true, false);
+			SetName("Player Head Drops");
+			SetDescription("Allows players to drop their head when killed by another player. Suggested by: LordZimbo");
 
-			this.chance = config.getDouble("drop-chance", 20);
-			this.lore = ChatColor.translateAlternateColorCodes('&', config.getString("head-lore", ""));
+			this.chance = config.getDouble(this.getName() + ".drop-chance", 20);
+			this.lore = ChatColor.translateAlternateColorCodes('&', config.getString(this.getName() + ".head-lore", ""));
 		});
 	}
 

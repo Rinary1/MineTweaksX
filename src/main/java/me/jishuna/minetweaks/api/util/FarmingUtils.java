@@ -19,8 +19,7 @@ public class FarmingUtils {
 			return;
 
 		Random random = ThreadLocalRandom.current();
-		block.getWorld().spawnParticle(Particle.VILLAGER_HAPPY, block.getLocation().add(0.5, 1.5, 0.5), 15, 3d, 0.5d,
-				3d);
+		Particle.HAPPY_VILLAGER.builder().location(block.getLocation().add(0.5, 1.5, 0.5)).count(15).offset(3d, 0.5d, 3d).spawn();
 
 		if (mode != GameMode.CREATIVE)
 			item.setAmount(item.getAmount() - 1);
@@ -52,8 +51,7 @@ public class FarmingUtils {
 			if (mode != GameMode.CREATIVE)
 				item.setAmount(item.getAmount() - 1);
 
-			block.getWorld().spawnParticle(Particle.VILLAGER_HAPPY, block.getLocation().add(0.5, 0.5, 0.5), 15, 0.3d,
-					0.3d, 0.3d);
+			Particle.HAPPY_VILLAGER.builder().location(block.getLocation().add(0.5, 0.5, 0.5)).count(15).offset(0.3d, 0.3d, 0.3d).spawn();
 			return true;
 		}
 		return false;
@@ -75,15 +73,13 @@ public class FarmingUtils {
 			if (mode != GameMode.CREATIVE)
 				item.setAmount(item.getAmount() - 1);
 
-			block.getWorld().spawnParticle(Particle.VILLAGER_HAPPY, block.getLocation().add(0.5, 0.5, 0.5), 15, 0.3d,
-					0.3d, 0.3d);
+			Particle.HAPPY_VILLAGER.builder().location(block.getLocation().add(0.5, 0.5, 0.5)).count(15).offset(0.3d, 0.3d, 0.3d).spawn();
 			return true;
 		}
 
 		if (age > blockData.getMaximumAge() && data.getHeight() < maxHeight
 				&& top.getY() < top.getWorld().getMaxHeight() - 1) {
-			block.getWorld().spawnParticle(Particle.VILLAGER_HAPPY, block.getLocation().add(0.5, 0.5, 0.5), 15, 0.3d,
-					0.3d, 0.3d);
+			Particle.HAPPY_VILLAGER.builder().location(block.getLocation().add(0.5, 0.5, 0.5)).count(15).offset(0.3d, 0.3d, 0.3d).spawn();
 			top.getRelative(BlockFace.UP).setType(top.getType());
 
 			if (mode != GameMode.CREATIVE)

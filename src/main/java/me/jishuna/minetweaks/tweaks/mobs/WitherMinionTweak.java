@@ -23,8 +23,10 @@ public class WitherMinionTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Mobs/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/mobs.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true);
+			SetName("Wither Spawns Wither Skeletons");
+			SetDescription("Makes the wither spawn 3 wither skeletons when it reaches half health to match bedrock edition.");
 		});
 	}
 

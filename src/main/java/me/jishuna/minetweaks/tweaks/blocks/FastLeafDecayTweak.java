@@ -56,12 +56,14 @@ public class FastLeafDecayTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Blocks/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/blocks.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true, false);
+			SetName("Fast Leaf Decay");
+			SetDescription("Causes leaves to decay quickly when a tree is chopped down.");
 
-			this.style = Enums.getIfPresent(DecayStyle.class, config.getString("decay-type").toUpperCase())
+			this.style = Enums.getIfPresent(DecayStyle.class, config.getString(this.getName() + ".decay-type").toUpperCase())
 					.or(DecayStyle.RANDOM);
-			this.maxDistance = config.getInt("max-distance", 12);
+			this.maxDistance = config.getInt(this.getName() + ".max-distance", 12);
 			this.maxDistance *= this.maxDistance;
 		});
 	}
@@ -157,8 +159,7 @@ public class FastLeafDecayTweak extends Tweak {
 			if (block == null)
 				break;
 
-			block.getWorld().spawnParticle(Particle.BLOCK_DUST, block.getLocation().add(0.25, 0.25, 0.25), 5, 0.5, 0.5,
-					0.5, 0, block.getBlockData());
+			Particle.FALLING_DUST.builder().location(block.getLocation().add(0.25, 0.25, 0.25)).count(5).offset(0.5, 0.5, 0.5).data(block.getBlockData()).spawn();
 			block.breakNaturally();
 		}
 	}
@@ -174,8 +175,7 @@ public class FastLeafDecayTweak extends Tweak {
 			if (block.getY() != y)
 				break;
 
-			block.getWorld().spawnParticle(Particle.BLOCK_DUST, block.getLocation().add(0.25, 0.25, 0.25), 5, 0.5, 0.5,
-					0.5, 0, block.getBlockData());
+			Particle.FALLING_DUST.builder().location(block.getLocation().add(0.25, 0.25, 0.25)).count(5).offset(0.5, 0.5, 0.5).data(block.getBlockData()).spawn();
 			block.breakNaturally();
 
 			block = blockQueue.poll();

@@ -1,0 +1,81 @@
+## Dispenser Cauldron Emptying Tweak Configuration
+
+cauldron_emptying.enabled: true
+
+cauldron_emptying.category: "Dispensers"
+
+## Dispenser Cauldron Filling Tweak Configuration
+
+cauldron_filling.enabled: true
+
+cauldron_filling.category: "Dispensers"
+
+## Dispenser Block Placing
+
+block_placing.enabled: true
+
+# Require air in the target position for a dispenser to place a block.
+block_placing.placement-requires-air: true
+# Allows for custom material mappings for dispenser block placement, set a material to null to disable placing the material.
+block_placing.placement-mappings:
+  obsidian: 'null'
+  bedrock: 'null'
+  tnt: 'null'
+  wheat_seeds: 'wheat'
+  beetroot_seeds: 'beetroots'
+  carrot: 'carrots'
+  potato: 'potatoes'
+  pumpkin_seeds: 'pumpkin_stem'
+  melon_seeds: 'melon_stem'
+  redstone: 'redstone_wire'
+
+# Category
+block_placing.category: "Dispensers"
+
+## Dispenser Nether Wart Bonemealing Tweak Configuration
+
+netherwart_bonemealing.enabled: true
+
+netherwart_bonemealing.category: "Dispensers"
+
+## Dispenser Sand Bonemealing Tweak Configuration
+
+sand_bonemealing.enabled: true
+
+# Whether to allow this feature to work on normal sand.
+sand_bonemealing.allow-normal-sand: true
+# Whether to allow this feature to work on red sand.
+sand_bonemealing.allow-red-sand: true
+
+sand_bonemealing.category: "Dispensers"
+
+## Dispenser Small Flower Bonemealing Tweak Configuration
+
+small_flower_bonemealing.enabled: true
+
+# A list of small flowers that can be duplicated.
+small_flower_bonemealing.flowers:
+  - DANDELION
+  - POPPY
+  - BLUE_ORCHID
+  - ALLIUM
+  - AZURE_BLUET
+  - RED_TULIP
+  - ORANGE_TULIP
+  - WHITE_TULIP
+  - PINK_TULIP
+  - OXEYE_DAISY
+  - CORNFLOWER
+  - LILY_OF_THE_VALLEY
+  - WITHER_ROSE
+
+small_flower_bonemealing.category: "Farming"
+
+## Dispenser Sugar Cane Bonemealing Tweak Configuration
+
+sugarcane_bonemealing.enabled: true
+
+# The maximum height of sugar cane when bonemealed by a dispenser.
+sugarcane_bonemealing.bonemeal-height: 3
+
+sugarcane_bonemealing.category: "Dispensers"

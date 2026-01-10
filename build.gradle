@@ -2,13 +2,13 @@ import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
 	id 'java'
-	id "com.github.johnrengelman.shadow" version "7.1.0"
+	id "com.gradleup.shadow" version "9.2.0"
 }
 
 group 'me.jishuna.minetweaks'
-version '1.8.2'
+version '1.8.3'
 
-sourceCompatibility = targetCompatibility = JavaVersion.VERSION_16
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_21
 
 repositories {
 	mavenLocal()
@@ -16,26 +16,31 @@ repositories {
 	maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
 	maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
     maven { url = 'https://oss.sonatype.org/content/repositories/central' }
+    maven { url = 'https://repo.papermc.io/repository/maven-public/' }
 }
 
 dependencies {
-    compileOnly group: 'org.spigotmc', name: 'spigot-api', version: '1.18-R0.1-SNAPSHOT'
+    compileOnly group: 'io.papermc.paper', name: 'paper-api', version: '1.21.1-R0.1-SNAPSHOT'
     implementation group: 'me.jishuna', name: 'JishunaCommonLib', version: '1.0.0'
-    implementation group: 'org.bstats', name: 'bstats-bukkit', version: '2.2.1'
-    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
+    implementation group: 'org.bstats', name: 'bstats-bukkit', version: '3.1.0'
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.20.0'
 }
 
 
 shadowJar {
   	minimize()
   	
-  	delete fileTree('./target/') {
-        exclude archiveName
+    doFirst {
+        delete fileTree('./target/') {
+            exclude archiveFileName.get()
+        }
     }
   
-    setArchiveName('MineTweaks-' + this.version + '.jar')                                              
+    archiveFileName = "MineTweaks-${version}-paper.jar"
+
     relocate 'me.jishuna.commonlib', 'me.jishuna.minetweaks.libs.jishunacommonlib' 
     relocate 'org.bstats', 'me.jishuna.minetweaks.libs.bstats'
+
     destinationDirectory = file("./target/")                                   
 }
 

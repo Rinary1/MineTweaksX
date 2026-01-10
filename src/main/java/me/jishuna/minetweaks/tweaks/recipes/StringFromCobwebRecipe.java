@@ -20,8 +20,10 @@ public class StringFromCobwebRecipe extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Recipes/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/recipes.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true);
+			SetName("String From Cobwebs");
+			SetDescription("Allows crafting cobwebs into 5 string.");
 			
 			if (!isEnabled())
 				return;

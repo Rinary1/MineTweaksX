@@ -26,8 +26,10 @@ public class CauldronFillingTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Dispensers/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/dispensers.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true, false);
+			SetName("Dispenser Cauldron Filling");
+			SetDescription("Allows dispensers to fill cauldrons with buckets.");
 		});
 	}
 

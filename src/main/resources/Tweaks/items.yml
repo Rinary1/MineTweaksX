@@ -1,0 +1,77 @@
+## Armor Swap Tweak Configuration
+
+armor_swap.enabled: true
+
+armor_swap.category: "Items"
+
+## Infinity Water Bucket Tweak Configuration
+
+infinite_water_bucket.enabled: true
+
+# The cost to add infinity to a water bucket in an anvil.
+infinite_water_bucket.anvil-level-cost: 20
+
+infinite_water_bucket.category: "Items"
+
+## Use Crafting Table in Inventory Tweak Configuration
+
+inventory_crafting_table.enabled: true
+
+# Whether a permission is required to use this feature.
+inventory_crafting_table.require_permission: false
+
+# The permission node required to use this feature.
+inventory_crafting_table.permission: "minetweaks.items.inventory_crafting"
+
+inventory_crafting_table.category: "Items"
+
+## Use Ender Chest in Inventory Tweak Configuration
+
+inventory_enderchest.enabled: false
+
+# Whether a permission is required to use this feature.
+inventory_enderchest.require_permission: false
+
+# The permission node required to use this feature.
+inventory_enderchest.permission: "minetweaks.items.inventory_crafting"
+
+inventory_enderchest.category: "Items"
+
+## Player Head Drops Tweak Configration
+
+player_head_drops.enabled: true
+
+# The chance for a head to drop, out of 100.
+player_head_drops.drop-chance: 20
+
+# The lore for the dropped head, set to '' to have no lore.
+player_head_drops.head-lore: '&7Decapitated by %killer%'
+
+player_head_drops.category: "Items"
+
+## Sweet Berry Planting Tweak Configration
+
+sweet_berry_planting.enabled: true
+
+sweet_berry_planting.category: "Items"
+
+## Trowel Tweak Configration
+
+trowel.enabled: true
+
+# Trowel display name.
+trowel.name: 'Trowel'
+# Trowel material, materials with durability will take 1 durability damage when used.
+trowel.material: 'IRON_SHOVEL'
+# Trowel model data, for use with custom resource packs.
+trowel.model-data: 1
+
+trowel.category: "Items"
+
+## Wearable Banners Tweak Configration
+
+# Enable or disable this tweak.
+wearable_banners.enabled: true
+
+# Category
+wearable_banners.category: "Items"

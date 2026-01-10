@@ -26,8 +26,11 @@ public class DispenserNetherwartBonemealTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Dispensers/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/dispensers.yml").ifPresent(config -> {
+			var configName = this.getName().split("_", 2)[1];
+			loadDefaults(config, configName, true, false);
+			SetName("Dispenser Nether Wart Bonemealing");
+			SetDescription("Allows dispensers to bonemeal nether wart.");
 		});
 	}
 

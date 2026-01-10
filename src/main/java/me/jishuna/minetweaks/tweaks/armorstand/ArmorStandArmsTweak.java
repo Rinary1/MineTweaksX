@@ -20,8 +20,10 @@ public class ArmorStandArmsTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Armor Stands/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/armorstand.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName().split("_", 2)[1], true, false);
+			SetName("Armor Stand Arms");
+			SetDescription("Gives all armor stands arms when they are placed.");
 		});
 	}
 

@@ -22,8 +22,10 @@ public class WitherHealthTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Mobs/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, false);
+		FileUtils.loadResource(getPlugin(), "Tweaks/mobs.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), false);
+			SetName("Bedrock Wither Health");
+			SetDescription("Sets the wither's health to 600 (instead of 300) to match bedrock edition.");
 		});
 	}
 

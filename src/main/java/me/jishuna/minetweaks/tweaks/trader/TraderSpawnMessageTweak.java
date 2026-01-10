@@ -24,11 +24,13 @@ public class TraderSpawnMessageTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Wandering Trader/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/wandering_trader.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true, false);
+			SetName("Announce Spawn");
+			SetDescription("Announces the location to all players when a wandering trader spawns.");
 
 			this.message = ChatColor.translateAlternateColorCodes('&',
-					config.getString("announce-message", "Placeholder"));
+					config.getString(this.getName() + ".announce-message", "Placeholder"));
 		});
 
 	}

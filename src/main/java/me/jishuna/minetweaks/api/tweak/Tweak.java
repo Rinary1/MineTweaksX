@@ -17,6 +17,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 
+import me.jishuna.commonlib.Version;
+
 import me.jishuna.minetweaks.MineTweaks;
 import me.jishuna.minetweaks.api.events.EventWrapper;
 
@@ -29,7 +31,8 @@ public abstract class Tweak {
 	private String category;
 	private boolean enabled;
 
-	private final Set<String> invalidVersions = new HashSet<>();
+	private Integer minMinor;
+	private Integer maxMinor;
 
 	private final Table<Class<? extends Event>, EventPriority, EventWrapper<? extends Event>> eventTable = HashBasedTable
 			.create();
@@ -41,11 +44,44 @@ public abstract class Tweak {
 
 	public abstract void reload();
 
-	public void loadDefaults(ConfigurationSection section, boolean def) {
+	public void loadDefaults(ConfigurationSection section, boolean def)
+	{
+		loadDefaults(section, def, true);	
+	}
+
+	public void loadDefaults(ConfigurationSection section, boolean def, boolean loadResource) {
 		this.enabled = section.getBoolean("enabled", def);
+		this.category = section.getString("category", "None");
+
+		if (!loadResource)
+			return;
+
 		this.displayName = section.getString("display-name");
 		this.description = section.getString("description");
-		this.category = section.getString("category", "None");
+	}
+
+	public void loadDefaults(ConfigurationSection section, String tweakName, boolean def)
+	{
+		loadDefaults(section, tweakName, def, true);	
+	}
+
+	public void loadDefaults(ConfigurationSection section, String tweakName, boolean def, boolean loadResource) {
+		this.enabled = section.getBoolean(tweakName + ".enabled", def);
+		this.category = section.getString(tweakName + ".category", "None");
+
+		if (!loadResource)
+			return;
+
+		this.displayName = section.getString(tweakName + ".display-name");
+		this.description = section.getString(tweakName + ".description");
+	}
+
+	public void SetName (String name) {
+		this.displayName = name;
+	}
+
+	public void SetDescription (String description) {
+		this.description = description;
 	}
 
 	public Set<Class<? extends Event>> getEventClasses() {
@@ -66,11 +102,23 @@ public abstract class Tweak {
 	}
 
 	public boolean isVersionValid(String version) {
-		return !this.invalidVersions.contains(version);
+		int server = Version.minor();
+
+		if (minMinor != null && server < minMinor)
+			return false;
+
+		if (maxMinor != null && server > maxMinor)
+			return false;
+
+		return true;
 	}
 
-	public void addInvalidVersions(String... versions) {
-		this.invalidVersions.addAll(Arrays.asList(versions));
+	public void setMinVersion(int minor) {
+		this.minMinor = minor;
+	}
+
+	public void setMaxVersion(int minor) {
+		this.maxMinor = minor;
 	}
 
 	public boolean isEnabled() {

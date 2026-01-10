@@ -1,0 +1,11 @@
+## Item Frame Invisibility Tweak Configuration
+
+invisibility.enabled: true
+
+invisibility.category: "Item Frames"
+
+## Water Removes Item Frame Invisibility Tweak Configuration
+
+water_cleaning.enabled: true
+
+water_cleaning.category: "Item Frames"

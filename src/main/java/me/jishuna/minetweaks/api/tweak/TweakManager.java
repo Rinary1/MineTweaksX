@@ -13,7 +13,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
 import me.jishuna.commonlib.utils.ReflectionUtils;
-import me.jishuna.commonlib.utils.Version;
+import me.jishuna.commonlib.Version;
 import me.jishuna.minetweaks.MineTweaks;
 import me.jishuna.minetweaks.api.RegisterTweak;
 
@@ -35,7 +35,7 @@ public class TweakManager {
 		this.tweaks.clear();
 		this.eventMap.clear();
 
-		String version = Version.getServerVersion();
+		String version = Version.getMinecraftVersion();
 
 		for (Class<?> clazz : ReflectionUtils.getAllClassesInSubpackages("me.jishuna.minetweaks.tweaks",
 				this.getClass().getClassLoader())) {
@@ -54,7 +54,10 @@ public class TweakManager {
 					tweak.reload();
 					registerTweak(tweak);
 
-					categories.add(tweak.getCategory().replace(" ", "_"));
+					if (tweak.getCategory() instanceof String category && !category.isEmpty())
+						categories.add(category.replace(" ", "_"));
+					else
+						plugin.getLogger().warning(tweak.getName() + " doesn't have a valid category!");
 				} catch (ReflectiveOperationException | IllegalArgumentException e) {
 					e.printStackTrace();
 				}

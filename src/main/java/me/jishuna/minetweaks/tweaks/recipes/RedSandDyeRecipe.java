@@ -20,8 +20,10 @@ public class RedSandDyeRecipe extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Recipes/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, false);
+		FileUtils.loadResource(getPlugin(), "Tweaks/recipes.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), false);
+			SetName("Red Sand from Dye");
+			SetDescription("Allows crafting red sand with sand and red dye.");
 			
 			if (!isEnabled())
 				return;
@@ -31,7 +33,7 @@ public class RedSandDyeRecipe extends Tweak {
 			recipe.setGroup("redden_sand");
 			recipe.shape("111", "101", "111");
 			recipe.setIngredient('1', Material.SAND);
-			recipe.setIngredient('0', Material.RED_DYE);
+			recipe.setIngredient('0', new ItemStack(Material.RED_DYE, config.getInt(this.getName() + ".amount", 1)));
 			RecipeManager.getInstance().addRecipe(getPlugin(), recipe);
 		});
 

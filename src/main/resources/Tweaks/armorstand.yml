@@ -1,0 +1,23 @@
+## Armor Stand Arms Tweak Configuration
+
+arms.enabled: true
+
+arms.category: "Armor Stands"
+
+## Armor Stand Offhand Items Tweak Configuration
+
+offhand.enabled: true
+
+offhand.category: "Armor Stands"
+
+## Armor Stand Invisibility Tweak Configuration
+
+invisibility.enabled: true
+
+invisibility.category: "Armor Stands"
+
+## Armor Stand Water Cleaning Tweak Configuration
+
+water_cleaning.enabled: true
+
+water_cleaning.category: "Armor Stands"

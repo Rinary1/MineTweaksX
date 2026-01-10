@@ -9,7 +9,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockDispenseEvent;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
-import org.bukkit.inventory.AnvilInventory;
+import org.bukkit.inventory.view.AnvilView;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
@@ -23,7 +23,7 @@ import me.jishuna.minetweaks.api.tweak.Tweak;
 @RegisterTweak("infinite_water_bucket")
 public class InfiniteWaterBucketTweak extends Tweak {
 	private static final ItemStack BUCKET = new ItemBuilder(Material.WATER_BUCKET)
-			.enchantment(Enchantment.ARROW_INFINITE, 1).build();
+			.enchantment(Enchantment.INFINITY, 1).build();
 	private int cost;
 
 	public InfiniteWaterBucketTweak(MineTweaks plugin, String name) {
@@ -36,29 +36,31 @@ public class InfiniteWaterBucketTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Items/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/items.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true, false);
+			SetName("Infinity Water Bucket");
+			SetDescription("Allows the creation of infinite water buckets using an infinity enchanted book.");
 
-			this.cost = config.getInt("anvil-level-cost", 20);
+			this.cost = config.getInt(this.getName() + ".anvil-level-cost", 20);
 		});
 	}
 
 	private void onAnvil(PrepareAnvilEvent event) {
-		AnvilInventory inventory = event.getInventory();
-		ItemStack first = inventory.getItem(0);
-		ItemStack second = inventory.getItem(1);
+		AnvilView view = event.getView();
+		ItemStack first = view.getItem(0);
+		ItemStack second = view.getItem(1);
 
 		if (first == null || first.getType() != Material.WATER_BUCKET || second == null
 				|| second.getType() != Material.ENCHANTED_BOOK)
 			return;
 
-		if (first.containsEnchantment(Enchantment.ARROW_INFINITE))
+		if (first.containsEnchantment(Enchantment.INFINITY))
 			return;
 
 		EnchantmentStorageMeta meta = (EnchantmentStorageMeta) second.getItemMeta();
-		if (meta.hasStoredEnchant(Enchantment.ARROW_INFINITE)) {
-			event.setResult(ItemBuilder.modifyItem(BUCKET.clone()).name(inventory.getRenameText()).build());
-			inventory.setRepairCost(this.cost);
+		if (meta.hasStoredEnchant(Enchantment.INFINITY)) {
+			event.setResult(ItemBuilder.modifyItem(BUCKET.clone()).name(view.getRenameText()).build());
+			view.setRepairCost(this.cost);
 		}
 	}
 
@@ -71,7 +73,7 @@ public class InfiniteWaterBucketTweak extends Tweak {
 			if (item == null || item.getType() != Material.WATER_BUCKET)
 				continue;
 
-			if (item.containsEnchantment(Enchantment.ARROW_INFINITE)) {
+			if (item.containsEnchantment(Enchantment.INFINITY)) {
 				event.setItemStack(item);
 				break;
 			}
@@ -87,7 +89,7 @@ public class InfiniteWaterBucketTweak extends Tweak {
 		BlockFace face = directional.getFacing();
 		Block target = event.getBlock().getRelative(face);
 
-		if (item.getType() == Material.WATER_BUCKET && item.containsEnchantment(Enchantment.ARROW_INFINITE)) {
+		if (item.getType() == Material.WATER_BUCKET && item.containsEnchantment(Enchantment.INFINITY)) {
 			event.setCancelled(true);
 			if (target.getType().isAir())
 				target.setType(Material.WATER);

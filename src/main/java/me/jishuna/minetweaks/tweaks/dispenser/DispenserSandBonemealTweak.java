@@ -29,11 +29,14 @@ public class DispenserSandBonemealTweak extends Tweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Dispensers/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/dispensers.yml").ifPresent(config -> {
+			var configName = this.getName().split("_", 2)[1];
+			loadDefaults(config, configName, true, false);
+			SetName("Dispenser Sand Bonemealing");
+			SetDescription("Allows dispensers to bonemeal sand.");
 
-			this.sand = config.getBoolean("allow-normal-sand", true);
-			this.redSand = config.getBoolean("allow-red-sand", true);
+			this.sand = config.getBoolean(configName + ".allow-normal-sand", true);
+			this.redSand = config.getBoolean(configName + ".allow-red-sand", true);
 		});
 	}
 

@@ -15,22 +15,30 @@ public class RemoveScreenFireTweak extends Tweak {
 	public RemoveScreenFireTweak(MineTweaks plugin, String name) {
 		super(plugin, name);
 
+		setMaxVersion(19);
 		addEventHandler(EntityCombustEvent.class, this::onCombust);
 	}
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Misc/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/misc.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), true);
+			SetName("Remove Screen Fire");
+			SetDescription("Removes the fire effect from player's screens when they have fire resistance.");
 		});
 	}
 
 	private void onCombust(EntityCombustEvent event) {
-		if (event.getEntity() instanceof Player player
-				&& (player.hasPotionEffect(PotionEffectType.FIRE_RESISTANCE)
-						|| player.getGameMode() == GameMode.CREATIVE)) {
+		if (!(event.getEntity() instanceof Player player))
+			return;
+
+		if (player.hasPotionEffect(PotionEffectType.FIRE_RESISTANCE) 
+				|| player.getGameMode() == GameMode.CREATIVE) {
+			
 			event.setCancelled(true);
-			player.setFireTicks(-20);
+
+			player.setFireTicks(0);
+			player.setVisualFire(false);
 		}
 	}
 }

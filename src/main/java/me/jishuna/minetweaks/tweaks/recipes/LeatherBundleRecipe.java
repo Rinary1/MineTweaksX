@@ -16,12 +16,15 @@ public class LeatherBundleRecipe extends Tweak {
 
 	public LeatherBundleRecipe(MineTweaks plugin, String name) {
 		super(plugin, name);
+		setMaxVersion(20);
 	}
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Recipes/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, false);
+		FileUtils.loadResource(getPlugin(), "Tweaks/recipes.yml").ifPresent(config -> {
+			loadDefaults(config, this.getName(), false);
+			SetName("Leather Bundles");
+			SetDescription("Allows crafting bundles with leather and string.");
 			
 			if (!isEnabled())
 				return;

@@ -27,12 +27,15 @@ public class ScoreboardHealthTweak extends Tweak implements CleanupTweak {
 
 	@Override
 	public void reload() {
-		FileUtils.loadResource(getPlugin(), "Tweaks/Scoreboard/" + this.getName() + ".yml").ifPresent(config -> {
-			loadDefaults(config, true);
+		FileUtils.loadResource(getPlugin(), "Tweaks/scoreboard.yml").ifPresent(config -> {
+			var configName = this.getName().split("_", 2)[1];
+			loadDefaults(config, configName, true, false);
+			SetName("Scoreboard Health");
+			SetDescription("Shows player health on the scoreboard.");
 			this.cleanup();
 
-			this.display = ChatColor.translateAlternateColorCodes('&', config.getString("health-display", "Health"));
-			this.type = config.getString("health-display-type", "PLAYER_LIST").toUpperCase();
+			this.display = ChatColor.translateAlternateColorCodes('&', config.getString(configName + ".display", "Health"));
+			this.type = config.getString(configName + ".display-type", "PLAYER_LIST").toUpperCase();
 		});
 
 	}
