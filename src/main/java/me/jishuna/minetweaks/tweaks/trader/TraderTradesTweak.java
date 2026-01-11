@@ -37,12 +37,12 @@ public class TraderTradesTweak extends Tweak {
 			SetName("Replace Trades");
 			SetDescription("Replaces the default wandering trader traders with custom trades.");
 
-			this.min = config.getInt(this.getName() + "min-trades", 5);
-			this.max = config.getInt(this.getName() + "max-trades", 7);
+			this.min = config.getInt(this.getName() + ".min-trades", 5);
+			this.max = config.getInt(this.getName() + ".max-trades", 7);
 
 			this.recipes.clear();
 
-			for (String entry : config.getStringList(this.getName() + "custom-trades")) {
+			for (String entry : config.getStringList(this.getName() + ".custom-trades")) {
 				String[] data = entry.split(",");
 
 				if (data.length < 4)
